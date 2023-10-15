@@ -270,3 +270,27 @@ ggplot(covar1_df, aes(x = age, fill = sex)) +
 
 #### Comment:
 The age range for each three of categories are between 20 and 80 years. For "Less than High school education", we can see the peak of age distribution of Males is around ~50 and ~70. The female distribution is concentrated more with 50 to 65 age range. For "High school equivalent education" the peak of age distribution of Male is around ~30 and ~60 while the peak of female's age distribution is around ~75. Then, for the "More than high school education", the peak of female's age distribution is around ~35, but the peak of male's age distribution is around ~30. 
+
+### Step 3
+
+Traditional analyses of accelerometer data focus on the total activity over the day. Using your tidied dataset, aggregate across minutes to create a total activity variable for each participant. Plot these total activities (y-axis) against age (x-axis); your plot should compare men to women and have separate panels for each education level. Include a trend line or a smooth to illustrate differences. Comment on your plot.
+
+```{r}
+combine_df |> 
+  group_by(seqn,age,education,sex) |> 
+  summarize(totalactivity = sum(MIMS))   |> 
+ggplot(aes(x=age,y=totalactivity,color=sex))+
+  geom_point()+
+  facet_grid(.~education) +
+  geom_smooth(se=FALSE)+
+  labs(
+    x = "Age",
+    y = "Total activities",
+    color = "sex",
+    title = "Total activities against age"
+  ) 
+```
+
+#### Comment
+
+This plot is partitioned into three sections based on the different categories of education. For "less than high school education" both genders showing a decline in total activity as aging, but female's tend line shows a obvious increasing peak around age 60 but soon decline after that. For "High school equivalent", the total activities peak around the mid-age range for both genders, with the female tend to showing a greater incline at age 40 and 70 compare to male.  For "More than high school", from the dots in the plot we can see the data more dispersed in this category than the other two. The female activity level remain relatively consistent from 20 to 60 years old while male activity remain consistent from 20 to 50 years old. 
