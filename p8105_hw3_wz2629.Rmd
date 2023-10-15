@@ -1,0 +1,31 @@
+---
+title: "Homework 3"
+author: "Wen Dai"
+date: '`r format(Sys.time(), "%Y-%m-%d")`'
+output: github_document
+
+---
+# Problem 1:
+Initial Step: setting up the environment for data analysis and visualization, specifically involving packages like tidyverse, ggridges, patchwork, and p8105.datasets. This Step also sets various options and configurations for plotting and graphics.
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggridges)
+library(patchwork)
+library(p8105.datasets)
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	fig.width = 8, 
+  fig.height = 6,
+  out.width = "90%"
+)
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+
