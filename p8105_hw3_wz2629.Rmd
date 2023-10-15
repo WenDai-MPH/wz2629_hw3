@@ -116,4 +116,41 @@ brfss_smart2010=
   select(year,state=locationabbr,location=locationdesc,everything())
 ```
 
+### Step 2
+
+Part I: 
+
+ * In the year of 2002:
+```{r}
+year2002_df=
+  filter(brfss_smart2010,year==2002) |> 
+  select(year,state,location) |> 
+  distinct(year,state,location)
+result_1=
+  year2002_df |> 
+  group_by(year,state) |> 
+  summarize(n_obs=n()) |> 
+  filter(n_obs>=7) |> 
+  arrange(desc(n_obs))
+``` 
+#### Comment:
+In the year of 2002, state PA has 10 locations; states MA and NJ both have 8 locations; states CT, FL, NC all have 7 locations. 
+
+* In the year of 2010:
+```{r}
+year2002_df=
+  filter(brfss_smart2010,year==2010) |> 
+  select(year,state,location) |> 
+  distinct(year,state,location)
+result_2=
+  year2002_df |> 
+  group_by(year,state) |> 
+  summarize(n_obs=n()) |> 
+  filter(n_obs>=7) |> 
+  arrange(desc(n_obs))
+```
+#### Comment:
+In the year of 2010, state FL has 41 locations; state NJ has 19 locations; state TX has 16 locations; then states CA,MD, NC all have 12 locations; state NE and WA both have 10 locations; and states MA and NY both have 9 locations; state OH has 8 locations; states CO, PA, and SC all have 7 locations;
+
+
 
