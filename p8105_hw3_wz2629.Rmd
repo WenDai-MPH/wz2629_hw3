@@ -152,5 +152,26 @@ result_2=
 #### Comment:
 In the year of 2010, state FL has 41 locations; state NJ has 19 locations; state TX has 16 locations; then states CA,MD, NC all have 12 locations; state NE and WA both have 10 locations; and states MA and NY both have 9 locations; state OH has 8 locations; states CO, PA, and SC all have 7 locations;
 
+Part II:
+
+* Construct a dataset that is limited to excellent responses, and contains, year, state, and a variable average value over time within a state. then make a "spaghetti" plot of this average value over time within a state. 
+
+
+```{r}
+Excellent_df=
+  filter(brfss_smart2010,response=="Excellent") |> 
+  group_by(year,state) |> 
+  summarize(average=mean(data_value))
+  
+
+  ggplot(Excellent_df,aes(x=year,y=average,group=state,color=state))+
+  geom_line()+
+  labs(title = "Average Data Value Over Time by State",
+       x="Year",
+       y="Average Data Value within each State")
+```
+
+#### comment: 
+After generated this spaghetti plot of this average value over time within a state across years from 2002 to 2010. The average values for most states seem to oscillate between roughly 15 and 30, suggesting a stable range over the years.Overall, the data trends exhibit significant variation among the states. While some states demonstrate an upward trajectory, others display a decline, and a few maintain a more consistent pattern.
 
 
