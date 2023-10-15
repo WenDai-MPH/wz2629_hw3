@@ -252,3 +252,21 @@ covar1_df |>
 #### Comments:
 Both male and female exhibit a majority with education levels beyond high school. A higher percentage of females possess education beyond high school than males, though the difference is slight.
 
+Part II:
+
+create a visualization of the age distributions for men and women in each education category.
+```{r}
+ggplot(covar1_df, aes(x = age, fill = sex)) +
+  geom_density(alpha=0.5) +
+  facet_grid(.~education) +
+  labs(
+    x = "Age",
+    y = "Count",
+    fill = "Gender",
+    title = "Age Distributions by Education Category",
+    subtitle = "Separate histograms for Men and Women"
+  )
+```
+
+#### Comment:
+The age range for each three of categories are between 20 and 80 years. For "Less than High school education", we can see the peak of age distribution of Males is around ~50 and ~70. The female distribution is concentrated more with 50 to 65 age range. For "High school equivalent education" the peak of age distribution of Male is around ~30 and ~60 while the peak of female's age distribution is around ~75. Then, for the "More than high school education", the peak of female's age distribution is around ~35, but the peak of male's age distribution is around ~30. 
